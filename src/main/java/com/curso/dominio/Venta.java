@@ -69,7 +69,8 @@ public class Venta {
 			if(efectivoMenor(efectivo,importe)) {
 				System.out.println("Lo sentimos, dinero insuficiente");
 			}
-		}else {
+		}
+		else {
 			System.out.println("Producto Agotado,Pago cancelado");
 		}
 		
