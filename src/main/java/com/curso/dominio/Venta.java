@@ -3,13 +3,15 @@ package com.curso.dominio;
 public class Venta {
 	private Refresco refresco;
 	private int cantidad;
+	private double efectivo;
 
 	
 	//Constructor
-	public Venta(Refresco refresco, int cantidad) {
+	public Venta(Refresco refresco, int cantidad, double efectivo) {
 		super();
 		this.refresco = refresco;
 		this.cantidad = 1;
+		this.efectivo = efectivo;
 		
 		
 	}
@@ -22,23 +24,42 @@ public class Venta {
 	public int getCantidad() {
 		return cantidad;
 	}
-	
-	//Metodo para comprobar el stock
-	/*public boolean comprobarStock(int cantidad) {
+
+	public double getEfectivo() {
+		return efectivo;
+	}
+	//Metodo para verificar el pago (Osea si el efectivo es mayor al importe o igual)
+	public boolean verificarElPago(Venta venta) {
+		boolean resultado = false;
+		double importeV = venta.getRefresco().getPrecio()*venta.getCantidad();
+		double efectivo = venta.getEfectivo();
 		
-		if(this.refresco.getStock()>cantidad) {
-			return true;
+		if(efectivo < importeV) {
+			System.out.println();
+			resultado = false;
 		}else {
-			return false;
+			resultado = true;
 		}
+		return resultado;
+	}
+	//Metodo para comprobar el stock
+	public boolean comprobarStock(Venta venta) {
+		
+		boolean resultado = false;
+		
+		if(venta.getRefresco().getStock() < venta.getCantidad()) {
+			resultado = false;
+			System.out.println(venta.getRefresco().getNombre()+" agotado, lo sentimos");
+		}else {
+			resultado = true;
 			
+		}
+		return resultado;
+		
 	}
 	
-	public void vender(Refresco r, int cantidad) {
-		if(comprobarStock(cantidad)) {
-			
-		}
-	}*/
+	//Metodo para devolver el cambio
+	 
 
 
 		

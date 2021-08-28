@@ -26,7 +26,7 @@ public class Dia {
 	public void addVentas(Venta venta) {
 		
 		int posicion = numVentas++;
-		ventas[posicion] = new Venta(venta.getRefresco(), venta.getCantidad());
+		ventas[posicion] = new Venta(venta.getRefresco(), venta.getCantidad(), venta.getEfectivo());
 		
 	}
 	
