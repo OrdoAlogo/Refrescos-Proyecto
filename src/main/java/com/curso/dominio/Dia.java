@@ -5,6 +5,7 @@ public class Dia {
 	private Venta[] ventas;
 	private int numVentas;
 	private double totalVentas;
+	private double totalRefrescos;
 	
 	public Dia(String nombre) {
 		super();
@@ -12,6 +13,8 @@ public class Dia {
 		this.numVentas = 0;
 		this.nombre = nombre;
 		this.totalVentas = totalVentas;
+		this.totalRefrescos = totalRefrescos;
+		
 	}
 	
 	public String getNombre() {
@@ -46,6 +49,17 @@ public class Dia {
 			
 		}
 		return this.totalVentas;
+	}
+	
+	public double refrescosVendidos() {
+		double refrescos = 0;
+		for(int i=0; i<ventas.length; i++) {
+			if(this.ventas[i] != null) {
+				refrescos += this.ventas[i].getCantidad();
+				this.totalRefrescos = refrescos;
+			}
+		}
+		return this.totalRefrescos;
 	}
 
 }

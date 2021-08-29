@@ -5,6 +5,7 @@ public class Refresco {
 	private double precio;
 	private int stock;
 	
+	
 	public Refresco(String nombre, double precio, int stock) {
 		super();
 		this.nombre = nombre;
@@ -19,6 +20,10 @@ public class Refresco {
 
 	public int getStock() {
 		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
 	public String getNombre() {

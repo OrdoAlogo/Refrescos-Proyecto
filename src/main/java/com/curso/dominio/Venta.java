@@ -51,7 +51,12 @@ public class Venta {
 			resultado = false;
 			System.out.println(venta.getRefresco().getNombre()+" agotado, lo sentimos");
 		}else {
+			
 			resultado = true;
+			int stockAnterior = venta.getRefresco().getStock();
+			int cantidad = venta.getCantidad();
+			int stockActual = stockAnterior - cantidad;
+			venta.getRefresco().setStock(stockActual);
 			
 		}
 		return resultado;

@@ -17,16 +17,13 @@ public class DiarioVentas {
 		
 		for(int i_venta = 0; i_venta<dia.getNumVentas(); i_venta++) {
 			Venta venta = dia.getVenta(i_venta);
-			
+			double cambio = 0;
+			double importe = venta.getCantidad()*venta.getRefresco().getPrecio();
+			cambio = venta.getEfectivo() - importe;
+			System.out.println();
 			System.out.println(venta.getRefresco().getNombre() +" Precio: "+venta.getRefresco().getPrecio() +
 					" Unidades: "+venta.getCantidad() + " Bruto: "+(venta.getRefresco().getPrecio()*venta.getCantidad()) );
-			//Devolucion del cambio
-			if(venta.verificarElPago(venta) && venta.comprobarStock(venta)) {
-				double cambio = 0;
-				double importe = venta.getCantidad()*venta.getRefresco().getPrecio();
-				cambio = venta.getEfectivo() - importe;
-				System.out.println("Entregado: "+venta.getEfectivo()+" €"+", Cambio: "+cambio+" €");
-			}
+			System.out.println("Entregado: "+venta.getEfectivo()+" €"+", Cambio: "+cambio+" €"+ ", Unidades restantes: "+ venta.getRefresco().getStock());
 			System.out.println();
 		}
 	}
