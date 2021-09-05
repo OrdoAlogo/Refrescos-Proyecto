@@ -26,10 +26,37 @@ public class Dia {
 		return numVentas;
 	}
 
-	public void addVentas(Venta venta) {
+	public void addVentas(Venta venta) /*throws StockException, PagosException*/{
 		
-		int posicion = numVentas++;
-		ventas[posicion] = new Venta(venta.getRefresco(), venta.getCantidad(), venta.getEfectivo());
+		//Primero Verificamos el Stock
+		if(venta.getRefresco().getStock() < venta.getCantidad()) {
+			
+			/*throw new StockException("Producto agotado",venta.getCantidad()-venta.getRefresco().getStock());*/
+			System.out.println("Stock de "+venta.getRefresco().getNombre()+" agotado");
+		}
+		else {
+			
+			double importeV = venta.getRefresco().getPrecio()*venta.getCantidad();
+			double efectivo = venta.getEfectivo();
+			//Ahora Verificamos el Pago
+			if(efectivo < importeV) {
+				
+				/*throw new PagosException("Dinero insuficiente",importeV-efectivo);*/
+				System.out.println("Dinero insuficiente, entregado: "+efectivo+"€ "+", Importe compra: "+importeV+" Compra CANCELADA");
+			
+			}else {
+				
+				int stockAnterior = venta.getRefresco().getStock();
+				int cantidad = venta.getCantidad();
+				int stockActual = stockAnterior - cantidad;
+				venta.getRefresco().setStock(stockActual);
+				
+				int posicion = numVentas++;
+				ventas[posicion] = new Venta(venta.getRefresco(), venta.getCantidad(), venta.getEfectivo());
+	
+			}
+		}
+		
 		
 	}
 	
